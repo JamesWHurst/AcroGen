@@ -1,0 +1,77 @@
+﻿<Window x:Class="AcroGen.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:AcroGen"
+    xmlns:vm="clr-namespace:AcroGen.ViewModels"
+    mc:Ignorable="d"
+    Background="{StaticResource ResourceKey=BrushTextureR40}"
+    DataContext="{Binding Source={x:Static vm:ApplicationViewModel.The}}"
+    Title="{Binding ProgramTitlebarText}" Height="450" Width="800" Icon="/AcroGen;component/Images/App.ico">
+
+    <Window.InputBindings>
+        <KeyBinding Key="N" Modifiers="Control" Command="{Binding Path=CreateNewDocCommand}"/>
+        <KeyBinding Key="O" Modifiers="Control" Command="{Binding Path=SelectDocDefinitionFilePathnameCommand}"/>
+        <KeyBinding Key="X" Modifiers="ALT" Command="{Binding Path=ExitApplicationCommand}"/>
+    </Window.InputBindings>
+
+    <DockPanel LastChildFill="True">
+        <!-- The main menu-bar -->
+        <Menu x:Name="MenuMain" DockPanel.Dock="Top">
+            <MenuItem Header="_File" x:Name="MenuMainFile">
+                <MenuItem x:Name="miFileNew" Command="{Binding CreateNewDocCommand}" Header="Create a _New Document" InputGestureText="CTL+N" ToolTip="Create a new document-definition."/>
+                <MenuItem x:Name="miFileOpen" Command="{Binding SelectDocDefinitionFilePathnameCommand}" Header="_Open a document-definition file..." InputGestureText="CTL+O" ToolTip="Open a document-definition that has been saved to disk."/>
+                <Separator/>
+                <MenuItem Command="{Binding Path=ExitApplicationCommand}" x:Name="miFileExit" Header="E_xit" ToolTip="Select this to exit this program (or press ALT+X)." InputGestureText="ALT+X" />
+            </MenuItem>
+            <MenuItem Header="_View" x:Name="MenuMainView">
+            </MenuItem>
+            <MenuItem Header="_Tools" x:Name="miTools">
+                <MenuItem x:Name="miOptions" Command="{Binding Path=EditOptionsCommand}" Header="Options .."/>
+            </MenuItem>
+            <MenuItem Header="_Help" x:Name="MenuMainHelp">
+                <MenuItem x:Name="MenuAbout" Command="{Binding Path=ShowHelpAboutMeCommand}" Header="About"/>
+            </MenuItem>
+            <MenuItem x:Name="miExit" Command="{Binding Path=ExitApplicationCommand}">
+                <MenuItem.Icon>
+                    <Image Height="16" Margin="0" Source="/AcroGen;component/Images/Exit.png" Stretch="Uniform"
+                           ToolTip="Press this to exit from Doc-Editor (or press ALT+X)." />
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+
+        <ToolBar DockPanel.Dock="Top">
+            <Button Content="Update" Command="{Binding UpdateDocumentDisplayCommand}" ToolTip="Display the updated document."/>
+        </ToolBar>
+
+        <!-- The Status Bar -->
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <StatusBarItem Grid.Column="0" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding Path=DocDefinitionFilePathname}" MinWidth="150" ToolTip="This denotes the file-pathname of the document-specification file being displayed." Padding="5,0" TextAlignment="Left"/>
+            </StatusBarItem>
+            <StatusBarItem Grid.Column="3" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding Path=ProgramVersion}" ToolTip="This is the program-version."/>
+            </StatusBarItem>
+        </StatusBar>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="139*"/>
+        </Grid.ColumnDefinitions>
+
+    </Grid>
+    </DockPanel>
+</Window>

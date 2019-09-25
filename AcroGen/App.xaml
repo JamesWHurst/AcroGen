@@ -1,0 +1,27 @@
+﻿<dfBaseLibWpf:DfDesktopApplication x:Class="AcroGen.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:AcroGen"
+    xmlns:baseLibWpf="clr-namespace:Hurst.BaseLibWpf;assembly=Hurst.BaseLibWpf"
+    xmlns:dfBaseLibWpf="clr-namespace:Hurst.DFBaseLibWpf;assembly=Hurst.DFBaseLibWpf"
+    StartupUri="Views/MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Hurst.BaseLibWpf;component/Dictionaries/ButtonDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <baseLibWpf:BoolToVisibleVHiddenConverter x:Key="boolToVisibleVHiddenConv"/>
+            <baseLibWpf:BoolToVisibleVCollapsedConverter x:Key="boolToVisibleVCollapsedConv"/>
+            <baseLibWpf:BoolToHiddenConverter x:Key="boolToHiddenConv"/>
+            <baseLibWpf:BoolToCollapsedConverter x:Key="boolToCollapsedConv"/>
+            <ImageBrush x:Key="BrushTextureR40" 
+                        AlignmentX="Left" AlignmentY="Top"
+                        ImageSource="/AcroGen;component/Images/TextureR40x40.png"
+                        Stretch="None"
+                        TileMode="Tile" 
+                        Viewport="0,0,40,40" ViewportUnits="Absolute" />
+            <SolidColorBrush x:Key="textHelp" Color="#FF64A6FF"/>
+            <SolidColorBrush x:Key="textHelp2" Color="#FF00FF00"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</dfBaseLibWpf:DfDesktopApplication>

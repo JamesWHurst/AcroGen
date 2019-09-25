@@ -1,0 +1,6 @@
+*The Lib dependencies need to be whipped into shape for uploading into GitHub.
+Possibly the most commonly used ones, ie BaseLib, BaseLibWpf, DFBaseLibWpf
+should be combined into a NuGet package,
+and then LogNut into it's own package.
+?
+
